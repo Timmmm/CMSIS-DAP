@@ -15,9 +15,20 @@
  */
 #include "board.h"
 
-/* Each board should have a unique ID and secret. For information
- *	about obtaining a secret contact support@mbed.org
+/* The board secret was used in the original mbed implementation for establishing
+ * the authenticity of of the hardware product. The original platform had a secret
+ * that was programmed into the bootloader (which the end user had no access to),
+ * and was used as part of a hash to generate and authentication code that is sent to
+ * the mbed server as part of the signup process. Only we knew the secret in the hardware,
+ * and signup to mbed.org was only possible if this authentication process passed. 
+ *
+ * Now that the source code is open, and we no longer restrict signing up to mbed.org,
+ * the board secret has little value. Indeed, most of our platform partners leave it
+ * as all X's, and we insert the corresponding secret in our web backend. 
+ *
+ * For information about board secrets contact support@mbed.org
  */
+
 #if defined (BOARD_FRDM_KL25Z) || defined (BOARD_TWR_KL25Z48M)
 #define BOARD_ID        "0200"
 #define BOARD_SECRET    "xxxxxxxx"
